@@ -22,6 +22,21 @@ const mainNavItems: NavItem[] = [
     href: dashboard(),
     icon: LayoutGrid,
   },
+  {
+    title: 'Agendamentos',
+    href: '/appointments',
+    icon: LayoutGrid,
+  },
+  {
+    title: 'Médicos',
+    href: '/doctors',
+    icon: LayoutGrid,
+  },
+  {
+    title: 'Pacientes',
+    href: '/patients',
+    icon: LayoutGrid,
+  },
 ];
 
 const footerNavItems: NavItem[] = [
@@ -39,7 +54,7 @@ const footerNavItems: NavItem[] = [
 
 export function AppSidebar() {
   return (
-    <Sidebar collapsible="icon" variant="inset">
+    <Sidebar collapsible="offcanvas" variant="sidebar">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

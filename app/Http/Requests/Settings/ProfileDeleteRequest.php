@@ -17,8 +17,25 @@ class ProfileDeleteRequest extends FormRequest
      */
     public function rules(): array
     {
+        if ($this->user()->is_google_user) {
+            return [
+                'email' => ['required', 'email'],
+            ];
+        }
+
         return [
             'password' => $this->currentPasswordRules(),
         ];
+    }
+
+    public function withValidator($validator): void
+    {
+        if ($this->user()->is_google_user) {
+            $validator->after(function ($validator) {
+                if ($this->email !== $this->user()->email) {
+                    $validator->errors()->add('email', 'O e-mail não corresponde à sua conta.');
+                }
+            });
+        }
     }
 }

@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clinic_user', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignUuid('clinic_id')->constrained()->cascadeOnDelete();
-            $table->timestamps();
-            $table->primary(['user_id', 'clinic_id']);
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('avatar_url')->nullable()->after('email');
+            $table->boolean('is_google_user')->default(false)->after('avatar_url');
         });
     }
 
@@ -24,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clinic_user');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

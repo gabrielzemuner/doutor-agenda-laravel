@@ -12,7 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('doctors', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('clinic_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('avatar_image_url')->nullable();
+            $table->tinyInteger('available_from_week_day'); // 0=dom, 1=seg...6=sab
+            $table->tinyInteger('available_to_week_day');
+            $table->time('available_from_time'); // hh:mm:ss
+            $table->time('available_to_time');
+            $table->string('specialty');
+            $table->integer('appointment_price_in_cents'); // preço da consulta
             $table->timestamps();
         });
     }

@@ -22,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar_url',
+        'is_google_user',
     ];
 
     /**
@@ -47,6 +49,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
+            'is_google_user' => 'boolean',
         ];
+    }
+
+    public function clinics()
+    {
+        return $this->belongsToMany(Clinic::class);
+    }
+
+    // Accessor pra pegar a clínica ativa (o projeto original assume 1 clínica por user)
+    public function getClinicAttribute(): ?Clinic
+    {
+        return $this->clinics()->first();
     }
 }

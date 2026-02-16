@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, usePage } from '@inertiajs/react';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,6 +8,8 @@ import AuthLayout from '@/layouts/auth-layout';
 import { store } from '@/routes/password/confirm';
 
 export default function ConfirmPassword() {
+  const { auth } = usePage().props;
+
   return (
     <AuthLayout
       title="Confirm your password"
@@ -15,36 +17,40 @@ export default function ConfirmPassword() {
     >
       <Head title="Confirm password" />
 
-      <Form {...store.form()} resetOnSuccess={['password']}>
-        {({ processing, errors }) => (
-          <div className="space-y-6">
-            <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Password"
-                autoComplete="current-password"
-                autoFocus
-              />
+      {!auth.user.is_google_user ? (
+        <Form {...store.form()} resetOnSuccess={['password']}>
+          {({ processing, errors }) => (
+            <div className="space-y-6">
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  autoComplete="current-password"
+                  autoFocus
+                />
 
-              <InputError message={errors.password} />
-            </div>
+                <InputError message={errors.password} />
+              </div>
 
-            <div className="flex items-center">
-              <Button
-                className="w-full"
-                disabled={processing}
-                data-test="confirm-password-button"
-              >
-                {processing && <Spinner />}
-                Confirm password
-              </Button>
+              <div className="flex items-center">
+                <Button
+                  className="w-full"
+                  disabled={processing}
+                  data-test="confirm-password-button"
+                >
+                  {processing && <Spinner />}
+                  Confirm password
+                </Button>
+              </div>
             </div>
-          </div>
-        )}
-      </Form>
+          )}
+        </Form>
+      ) : (
+        <p>Você está autenticado via Google</p>
+      )}
     </AuthLayout>
   );
 }

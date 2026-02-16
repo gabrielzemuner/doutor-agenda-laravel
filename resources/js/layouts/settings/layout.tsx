@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import type { PropsWithChildren } from 'react';
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
@@ -11,7 +11,7 @@ import { show } from '@/routes/two-factor';
 import { edit as editPassword } from '@/routes/user-password';
 import type { NavItem } from '@/types';
 
-const sidebarNavItems: NavItem[] = [
+const allNavItems: NavItem[] = [
   {
     title: 'Profile',
     href: edit(),
@@ -36,6 +36,13 @@ const sidebarNavItems: NavItem[] = [
 
 export default function SettingsLayout({ children }: PropsWithChildren) {
   const { isCurrentUrl } = useCurrentUrl();
+  const { auth } = usePage().props;
+
+  const sidebarNavItems = auth.user.is_google_user
+    ? allNavItems.filter(
+        (item) => item.title !== 'Password' && item.title !== 'Two-Factor Auth',
+      )
+    : allNavItems;
 
   // When server-side rendering, we only render the layout on the client...
   if (typeof window === 'undefined') {
