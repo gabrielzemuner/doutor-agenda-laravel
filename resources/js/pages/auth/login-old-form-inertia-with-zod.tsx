@@ -1,6 +1,3 @@
-import { Head, useForm } from '@inertiajs/react';
-import { toast } from 'sonner';
-import z from 'zod';
 import InputError from '@/components/input-error';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
@@ -8,6 +5,9 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
+import { Head, useForm } from '@inertiajs/react';
+import { toast } from 'sonner';
+import z from 'zod';
 // import AuthLayout from '@/layouts/auth-layout';
 import LoginLayout from '@/layouts/login-layout';
 // import { register } from '@/routes';

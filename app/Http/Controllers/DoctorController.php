@@ -25,10 +25,6 @@ class DoctorController extends Controller
         $data = $request->validated();
         $data['clinic_id'] = Auth::user()->clinic->id;
 
-        // Conversão de horário local → UTC (mesma lógica do original)
-        $data['available_from_time'] = Carbon::parse($data['available_from_time'])->utc()->format('H:i:s');
-        $data['available_to_time'] = Carbon::parse($data['available_to_time'])->utc()->format('H:i:s');
-
         Doctor::create($data);
 
         return back()->with('success', 'Médico adicionado com sucesso.');
@@ -40,8 +36,6 @@ class DoctorController extends Controller
         abort_unless($doctor->clinic_id === Auth::user()->clinic->id, 403);
 
         $data = $request->validated();
-        $data['available_from_time'] = Carbon::parse($data['available_from_time'])->utc()->format('H:i:s');
-        $data['available_to_time'] = Carbon::parse($data['available_to_time'])->utc()->format('H:i:s');
 
         $doctor->update($data);
 
@@ -54,6 +48,6 @@ class DoctorController extends Controller
 
         $doctor->delete();
 
-        return back()->with('success', 'Médico deletado com sucesso.');
+        return back()->with('success', 'Médico apagado com sucesso.');
     }
 }

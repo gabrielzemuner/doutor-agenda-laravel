@@ -1,4 +1,3 @@
-import { Head } from '@inertiajs/react';
 import {
   PageActions,
   PageContainer,
@@ -9,9 +8,12 @@ import {
   PageTitle,
 } from '@/components/ui/page-container';
 import AppLayout from '@/layouts/app-layout';
+import type { Doctor } from '@/types/models';
+import { Head } from '@inertiajs/react';
 import AddDoctorButton from './add-doctor-button';
+import DoctorCard from './doctor-card';
 
-export default function Index() {
+export default function Index({ doctors }: { doctors: Doctor[] }) {
   return (
     <AppLayout breadcrumbs={[]}>
       <Head title="Médicos" />
@@ -28,12 +30,11 @@ export default function Index() {
           </PageActions>
         </PageHeader>
         <PageContent>
-          {/* <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-6">
             {doctors.map((doctor) => (
               <DoctorCard key={doctor.id} doctor={doctor} />
             ))}
-          </div> */}
-          <h1>Médicos</h1>
+          </div>
         </PageContent>
       </PageContainer>
     </AppLayout>

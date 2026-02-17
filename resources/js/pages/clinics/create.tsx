@@ -1,4 +1,3 @@
-import { Form } from '@inertiajs/react';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,6 +13,7 @@ import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import AppLayout from '@/layouts/app-layout';
 import { store } from '@/routes/clinics';
+import { Form } from '@inertiajs/react';
 
 export default function Create() {
   return (

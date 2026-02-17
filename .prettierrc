@@ -3,8 +3,9 @@
     "singleQuote": true,
     "singleAttributePerLine": false,
     "htmlWhitespaceSensitivity": "css",
-    "printWidth": 80,
+    "printWidth": 150,
     "plugins": [
+        "prettier-plugin-organize-imports",
         "prettier-plugin-tailwindcss"
     ],
     "tailwindFunctions": [

@@ -1,6 +1,5 @@
 import { Form, Head, usePage } from '@inertiajs/react';
 
-import { useState } from 'react';
 import { redirect } from '@/actions/App/Http/Controllers/SocialiteController';
 import GoogleButton from '@/components/google-button';
 import InputError from '@/components/input-error';
@@ -10,6 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
+import { useState } from 'react';
 // import AuthLayout from '@/layouts/auth-layout';
 import LoginLayout from '@/layouts/login-layout';
 // import { register } from '@/routes';
