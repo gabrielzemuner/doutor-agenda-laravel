@@ -37,7 +37,11 @@ class UpsertDoctorRequest extends FormRequest
         return [
             'name.required' => 'Nome é obrigatório.',
             'specialty.required' => 'Especialidade é obrigatória.',
+            'appointment_price_in_cents.integer' => 'Preço da consulta deve ser um número inteiro.',
+            'appointment_price_in_cents.min' => 'Preço da consulta deve ser maior que :min.',
             'appointment_price_in_cents.required' => 'Preço da consulta é obrigatório.',
+            'available_from_time.required' => 'Horário de início é obrigatório.',
+            'available_to_time.required' => 'Horário de término é obrigatório.',
             'available_to_time.after' => 'O horário de início não pode ser anterior ao horário de término.',
         ];
     }

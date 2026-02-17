@@ -15,7 +15,7 @@ class DoctorController extends Controller
     {
         $doctors = Auth::user()->clinic->doctors()->latest()->get();
 
-        return Inertia::render('doctors/edit', [
+        return Inertia::render('doctors/index', [
             'doctors' => $doctors,
         ]);
     }
