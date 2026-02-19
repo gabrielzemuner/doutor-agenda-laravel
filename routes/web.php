@@ -30,7 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/clinic', [ClinicController::class, 'store'])->name('clinics.store');
 });
 
-Route::get('/auth/google', [SocialiteController::class, 'redirect']);
-Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
+Route::get('/auth/google', [SocialiteController::class, 'redirect'])->name('google.redirect');
+Route::get('/auth/google/callback', [SocialiteController::class, 'callback'])->name('google.callback');
 
 require __DIR__ . '/settings.php';

@@ -1,10 +1,24 @@
 import DeleteButton from '@/components/delete-button';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
-import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import {
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Spinner } from '@/components/ui/spinner';
 import { medicalSpecialties } from '@/constants/specialties';
 import { availableHours, weekDays } from '@/helpers/available-values';
@@ -18,7 +32,10 @@ interface UpsertDoctorFormProps {
   onSuccess?: () => void;
 }
 
-export default function UpsertDoctorForm({ doctor, onSuccess }: UpsertDoctorFormProps) {
+export default function UpsertDoctorForm({
+  doctor,
+  onSuccess,
+}: UpsertDoctorFormProps) {
   const { data, setData, processing, errors, submit, reset } = useForm<Doctor>({
     name: doctor?.name ?? '',
     specialty: doctor?.specialty ?? '',
@@ -37,7 +54,11 @@ export default function UpsertDoctorForm({ doctor, onSuccess }: UpsertDoctorForm
 
       <DialogHeader>
         <DialogTitle>{doctor ? doctor.name : 'Adicionar médico'}</DialogTitle>
-        <DialogDescription>{doctor ? 'Edite as informações desse médico.' : 'Adicione um novo médico.'}</DialogDescription>
+        <DialogDescription>
+          {doctor
+            ? 'Edite as informações desse médico.'
+            : 'Adicione um novo médico.'}
+        </DialogDescription>
       </DialogHeader>
 
       <form
@@ -50,14 +71,21 @@ export default function UpsertDoctorForm({ doctor, onSuccess }: UpsertDoctorForm
         {/* Nome */}
         <div className="grid gap-2">
           <Label htmlFor="name">Nome</Label>
-          <Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} />
+          <Input
+            id="name"
+            value={data.name}
+            onChange={(e) => setData('name', e.target.value)}
+          />
           <InputError message={errors.name} />
         </div>
 
         {/* Especialidade */}
         <div className="grid gap-2">
           <Label htmlFor="specialty">Especialidade</Label>
-          <Select value={data.specialty} onValueChange={(value) => setData('specialty', value)}>
+          <Select
+            value={data.specialty}
+            onValueChange={(value) => setData('specialty', value)}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Selecione uma especialidade" />
             </SelectTrigger>
@@ -79,7 +107,10 @@ export default function UpsertDoctorForm({ doctor, onSuccess }: UpsertDoctorForm
             id="appointment_price_in_cents"
             value={data.appointment_price_in_cents / 100}
             onValueChange={(values) => {
-              setData('appointment_price_in_cents', Math.round((values.floatValue ?? 0) * 100));
+              setData(
+                'appointment_price_in_cents',
+                Math.round((values.floatValue ?? 0) * 100),
+              );
             }}
             decimalScale={2}
             fixedDecimalScale
@@ -97,7 +128,10 @@ export default function UpsertDoctorForm({ doctor, onSuccess }: UpsertDoctorForm
         {/* Dias e horários */}
         <div className="grid gap-2">
           <Label>Dia inicial de disponibilidade</Label>
-          <Select value={data.available_from_week_day} onValueChange={(value) => setData('available_from_week_day', value)}>
+          <Select
+            value={data.available_from_week_day}
+            onValueChange={(value) => setData('available_from_week_day', value)}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Selecione um dia" />
             </SelectTrigger>
@@ -113,7 +147,10 @@ export default function UpsertDoctorForm({ doctor, onSuccess }: UpsertDoctorForm
         {/* Dia final de disponibilidade */}
         <div className="grid gap-2">
           <Label>Dia final de disponibilidade</Label>
-          <Select value={data.available_to_week_day} onValueChange={(value) => setData('available_to_week_day', value)}>
+          <Select
+            value={data.available_to_week_day}
+            onValueChange={(value) => setData('available_to_week_day', value)}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Selecione um dia" />
             </SelectTrigger>
@@ -129,7 +166,10 @@ export default function UpsertDoctorForm({ doctor, onSuccess }: UpsertDoctorForm
         {/* Horário inicial de disponibilidade */}
         <div className="grid gap-2">
           <Label>Horário inicial de disponibilidade</Label>
-          <Select value={data.available_from_time} onValueChange={(value) => setData('available_from_time', value)}>
+          <Select
+            value={data.available_from_time}
+            onValueChange={(value) => setData('available_from_time', value)}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Selecione um horário" />
             </SelectTrigger>
@@ -152,7 +192,10 @@ export default function UpsertDoctorForm({ doctor, onSuccess }: UpsertDoctorForm
         {/* Horário final de disponibilidade */}
         <div className="grid gap-2">
           <Label>Horário final de disponibilidade</Label>
-          <Select value={data.available_to_time} onValueChange={(value) => setData('available_to_time', value)}>
+          <Select
+            value={data.available_to_time}
+            onValueChange={(value) => setData('available_to_time', value)}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Selecione um horário" />
             </SelectTrigger>

@@ -1,5 +1,5 @@
 export type Doctor = {
-  id?: number;
+  id?: string;
   name: string;
   specialty: string;
   appointment_price_in_cents: number;
